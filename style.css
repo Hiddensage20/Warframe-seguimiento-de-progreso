@@ -1,0 +1,96 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #1a1a1a; /* Fondo oscuro tipo Warframe */
+    color: #eee;
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+h1 {
+    color: #f0a02d; /* Color dorado/naranja de Warframe */
+    margin-bottom: 40px;
+}
+
+.warframe-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); /* Columnas responsivas */
+    gap: 20px;
+    width: 100%;
+    max-width: 1200px; /* Ancho máximo para el contenedor de tarjetas */
+}
+
+.warframe-card {
+    background-color: #333;
+    border: 2px solid #555;
+    border-radius: 8px;
+    padding: 10px;
+    text-align: center;
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out, background-color 0.2s ease-in-out;
+    position: relative; /* Para posicionar mensajes */
+
+    /* Estilo base GRIS - por defecto */
+    filter: grayscale(100%); /* Hace la imagen gris */
+    opacity: 0.7; /* Ligeramente transparente */
+}
+
+.warframe-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.warframe-card img {
+    max-width: 90%;
+    height: auto;
+    display: block; /* Elimina espacio extra debajo de la imagen */
+    margin: 0 auto 10px auto; /* Centra la imagen */
+}
+
+.warframe-card h3 {
+    margin: 5px 0;
+    color: #ccc; /* Color de texto para el nombre en gris */
+    font-size: 1.1em;
+}
+
+.status-messages {
+    position: absolute; /* Posición absoluta dentro de la tarjeta */
+    bottom: 5px; /* Ajusta según dónde quieras el texto */
+    left: 0;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    font-size: 0.8em;
+    font-weight: bold;
+    color: #f0a02d; /* Color para los mensajes */
+}
+
+.status-dominated,
+.status-helminth {
+    display: none; /* Oculto por defecto, JS los mostrará */
+}
+
+/* ESTADO COLOR - 1er clic */
+.warframe-card.colored {
+    filter: grayscale(0%); /* Quita el filtro gris */
+    opacity: 1; /* Opacidad completa */
+    border-color: #f0a02d; /* Borde de color */
+    background-color: #4a4a4a; /* Fondo un poco más claro */
+}
+.warframe-card.colored h3 {
+    color: #f0f0f0; /* Color de texto más claro */
+}
+
+
+/* ESTADO DOMINADO - 2do clic */
+.warframe-card.dominated .status-dominated {
+    display: block; /* Muestra el mensaje "DOMINADO" */
+}
+
+/* ESTADO HELMINTH - 3er clic (SOLO NORMALES) */
+.warframe-card.helminth .status-helminth {
+    display: block; /* Muestra el mensaje "HELMINTH" */
+}
