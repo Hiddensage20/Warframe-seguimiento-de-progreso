@@ -1,58 +1,71 @@
 body {
-    font-family: Arial, sans-serif;
-    background-color: #1a1a1a; /* Fondo oscuro tipo Warframe */
-    color: #eee;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Fuente un poco más moderna */
+    background-color: #121212; /* Fondo aún más oscuro para un look más "Warframe" */
+    color: #e0e0e0;
     margin: 0;
     padding: 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
+    min-height: 100vh; /* Para que el fondo ocupe toda la pantalla */
+    box-sizing: border-box; /* Incluye padding en el tamaño total */
 }
 
 h1 {
     color: #f0a02d; /* Color dorado/naranja de Warframe */
     margin-bottom: 40px;
+    text-shadow: 0 0 8px rgba(240, 160, 45, 0.5); /* Pequeña sombra para el título */
+    font-size: 2.5em;
+    text-transform: uppercase;
+    letter-spacing: 2px;
 }
 
 .warframe-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); /* Columnas responsivas */
-    gap: 20px;
+    /* Ajustado para 8 columnas con un tamaño mínimo y máximo */
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 15px; /* Espacio entre tarjetas */
     width: 100%;
-    max-width: 1200px; /* Ancho máximo para el contenedor de tarjetas */
+    max-width: 1300px; /* Ancho máximo para el contenedor de tarjetas, ajustado para 8 columnas */
+    padding: 0 10px; /* Pequeño padding lateral para que no toque los bordes */
 }
 
 .warframe-card {
-    background-color: #333;
-    border: 2px solid #555;
-    border-radius: 8px;
-    padding: 10px;
+    background-color: #2a2a2a; /* Fondo un poco más claro para la tarjeta */
+    border: 1px solid #444; /* Borde más sutil */
+    border-radius: 6px; /* Bordes ligeramente redondeados */
+    padding: 8px;
     text-align: center;
     cursor: pointer;
-    transition: transform 0.2s ease-in-out, background-color 0.2s ease-in-out;
-    position: relative; /* Para posicionar mensajes */
+    transition: transform 0.2s ease-in-out, background-color 0.2s ease-in-out, filter 0.2s ease-in-out, border-color 0.2s ease-in-out;
+    position: relative; /* Para posicionar mensajes internos */
+    overflow: hidden; /* Asegura que nada se salga de los límites de la tarjeta */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Sombra ligera por defecto */
 
     /* Estilo base GRIS - por defecto */
-    filter: grayscale(100%); /* Hace la imagen gris */
-    opacity: 0.7; /* Ligeramente transparente */
+    filter: grayscale(90%) brightness(0.7); /* Hace la imagen gris y un poco más oscura */
+    opacity: 0.8; /* Ligeramente transparente */
 }
 
 .warframe-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    transform: translateY(-3px); /* Levanta un poco la tarjeta al pasar el ratón */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4); /* Sombra más pronunciada al pasar el ratón */
 }
 
 .warframe-card img {
-    max-width: 90%;
+    max-width: 95%; /* Imagen un poco más grande dentro de la tarjeta */
     height: auto;
-    display: block; /* Elimina espacio extra debajo de la imagen */
-    margin: 0 auto 10px auto; /* Centra la imagen */
+    display: block;
+    margin: 0 auto 5px auto; /* Centra la imagen y reduce margen inferior */
+    border-radius: 4px; /* Pequeño redondeo a la imagen */
 }
 
 .warframe-card h3 {
-    margin: 5px 0;
-    color: #ccc; /* Color de texto para el nombre en gris */
-    font-size: 1.1em;
+    margin: 5px 0 0; /* Reduce márgenes para el nombre */
+    color: #b0b0b0; /* Color de texto para el nombre en gris */
+    font-size: 0.9em; /* Nombre un poco más pequeño */
+    text-transform: uppercase; /* Nombre en mayúsculas */
+    letter-spacing: 0.5px;
 }
 
 .status-messages {
@@ -62,26 +75,33 @@ h1 {
     right: 0;
     display: flex;
     flex-direction: column;
+    align-items: center; /* Centra los mensajes */
     gap: 2px;
-    font-size: 0.8em;
+    font-size: 0.65em; /* Tamaño de fuente más pequeño para los mensajes */
     font-weight: bold;
     color: #f0a02d; /* Color para los mensajes */
+    text-shadow: 0 0 5px rgba(240, 160, 45, 0.6); /* Sombra para resaltar los mensajes */
 }
 
 .status-dominated,
 .status-helminth {
     display: none; /* Oculto por defecto, JS los mostrará */
+    background-color: rgba(0, 0, 0, 0.6); /* Fondo semi-transparente para los mensajes */
+    padding: 2px 5px;
+    border-radius: 3px;
+    white-space: nowrap; /* Evita que el texto se rompa en varias líneas */
 }
 
 /* ESTADO COLOR - 1er clic */
 .warframe-card.colored {
-    filter: grayscale(0%); /* Quita el filtro gris */
+    filter: grayscale(0%) brightness(1); /* Quita el filtro gris y vuelve al brillo normal */
     opacity: 1; /* Opacidad completa */
     border-color: #f0a02d; /* Borde de color */
-    background-color: #4a4a4a; /* Fondo un poco más claro */
+    background-color: #3b3b3b; /* Fondo un poco más claro para el estado activo */
+    box-shadow: 0 0 10px rgba(240, 160, 45, 0.5); /* Brillo dorado */
 }
 .warframe-card.colored h3 {
-    color: #f0f0f0; /* Color de texto más claro */
+    color: #f0f0f0; /* Color de texto más claro cuando está coloreado */
 }
 
 
@@ -93,4 +113,14 @@ h1 {
 /* ESTADO HELMINTH - 3er clic (SOLO NORMALES) */
 .warframe-card.helminth .status-helminth {
     display: block; /* Muestra el mensaje "HELMINTH" */
+}
+
+/* Opcional: Estilo específico para tarjetas Prime cuando estén en color */
+.warframe-card[data-type="prime"].colored {
+    border-color: #c9b04f; /* Borde dorado para Prime */
+    box-shadow: 0 0 12px rgba(201, 176, 79, 0.7); /* Brillo más intenso para Prime */
+}
+
+.warframe-card[data-type="prime"].colored h3 {
+    color: #fdd835; /* Nombre en dorado para Prime */
 }
