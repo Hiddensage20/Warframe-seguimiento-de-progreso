@@ -28,7 +28,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const dominatedMessage = card.querySelector('.status-dominated');
             const helminthMessage = card.querySelector('.status-helminth');
 
-            // Ocultar mensajes por defecto
+            // Ocultar mensajes por defecto antes de volver a mostrarlos condicionalmente
             if (dominatedMessage) dominatedMessage.style.display = 'none';
             if (helminthMessage) helminthMessage.style.display = 'none';
 
